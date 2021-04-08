@@ -54,10 +54,22 @@ const main = {
   getLastTestParamValue: function () {
     const results = [];
     const excluded = [];
+    const resultsSeen = {};
 
-    // TODO: implement
-    throw 'printTests not implemented';
+    this.testData.forEach((data) => {
+      const action = data.action;
+      const lastParam = data.params[data.params.length - 1];
+      const lastParamValue = Object.values(lastParam)[0];
 
+      if (!resultsSeen[lastParamValue]) {
+        results.push({ action, lastParamValue });
+        resultsSeen[lastParamValue] = true;
+      } else {
+        excluded.push({ action, lastParamValue });
+      }
+    });
+
+    console.log({ results, excluded });
     return { results, excluded };
   },
 
