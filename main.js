@@ -78,8 +78,15 @@ const main = {
    * return empty string if exception caught, the page's url otherwise
    * */
   goTo: async function (params) {
-    // TODO: implement
-    throw 'goTo not implemented';
+    const url = params[0].url;
+    const page = await this.browser.newPage();
+    this.currentPage = await page.goto(url);
+
+    try {
+      return this.currentPage.url();
+    } catch {
+      return '';
+    }
   },
 
   /*
