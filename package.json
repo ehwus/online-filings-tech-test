@@ -1,0 +1,14 @@
+{
+  "name": "tests",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest main.test.js --watch"
+  },
+  "dependencies": {
+    "puppeteer": "^8.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

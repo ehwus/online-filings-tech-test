@@ -1,0 +1,97 @@
+[
+  {
+    "action": "goTo",
+    "params": [
+      {
+        "url": "https://www.onlinefilings.co.uk/"
+      }
+    ]
+  },
+  {
+    "action": "exists",
+    "params": [
+      {
+        "selector": ".input-group input"
+      },
+      {
+        "selector": ".input-group button"
+      },
+      {
+        "selector": ".footer"
+      }
+    ]
+  },
+  {
+    "action": "type",
+    "params": [
+      {
+        "selector": ".input-group input",
+        "value": "test name company"
+      }
+    ]
+  },
+  {
+    "action": "click",
+    "params": [
+      {
+        "selector": ".input-group button"
+      }
+    ]
+  },
+  {
+    "action": "exists",
+    "params": [
+      {
+        "selector": ".footer"
+      },
+      {
+        "selector": "[data-href=\"https://www.onlinefilings.co.uk/checkout/\"]"
+      }
+    ]
+  },
+  {
+    "action": "click",
+    "params": [
+      {
+        "selector": "[data-href=\"https://www.onlinefilings.co.uk/checkout/\"]"
+      }
+    ]
+  },
+  {
+    "action": "exists",
+    "params": [
+      {
+        "selector": ".package-choice-btn"
+      },
+      {
+        "selector": ".footer"
+      }
+    ]
+  },
+  {
+    "action": "click",
+    "params": [
+      {
+        "selector": ".close-modal"
+      }
+    ]
+  },
+  {
+    "action": "click",
+    "params": [
+      {
+        "selector": ".package-choice-btn"
+      }
+    ]
+  },
+  {
+    "action": "equal",
+    "params": [
+      {
+        "selector": ".sub-total-value",
+        "type": "text",
+        "value": "£14.99"
+      }
+    ]
+  }
+]
