@@ -132,6 +132,7 @@ const main = {
 
     try {
       await page.click(selector);
+      await page.waitForNavigation();
       return true;
     } catch {
       return false;
