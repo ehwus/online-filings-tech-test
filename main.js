@@ -79,10 +79,11 @@ const main = {
    * */
   goTo: async function (params) {
     const url = params[0].url;
-    const page = await this.browser.newPage();
-    this.currentPage = await page.goto(url);
 
     try {
+      const page = await this.browser.newPage();
+      await page.goto(url);
+      this.currentPage = page;
       return this.currentPage.url();
     } catch {
       return '';
@@ -95,8 +96,14 @@ const main = {
    * [{ result: true/false, selector: selector-from-params }, {...}]
    * */
   exists: async function (params) {
-    // TODO: implement
-    throw 'exists not implemented';
+    return Promise.all(
+      params.map(async (param) => {
+        const selector = param.selector;
+        const result = (await this.currentPage.$(selector)) !== null;
+
+        return { result, selector };
+      })
+    );
   },
 
   /*
