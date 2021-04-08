@@ -132,7 +132,7 @@ const main = {
 
     try {
       await page.click(selector);
-      await page.waitForNavigation();
+      await page.waitForNavigation(100);
       return true;
     } catch {
       return false;
