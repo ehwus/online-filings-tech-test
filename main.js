@@ -111,8 +111,15 @@ const main = {
    * return empty string if exception caught, string entered into the selected element otherwise
    * */
   type: async function (params) {
-    // TODO: implement
-    throw 'type not implemented';
+    const page = this.currentPage;
+
+    const { selector, value } = params[0];
+    try {
+      await page.type(selector, value);
+      return value;
+    } catch {
+      return '';
+    }
   },
 
   /*
