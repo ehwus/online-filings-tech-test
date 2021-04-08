@@ -127,8 +127,15 @@ const main = {
    * return false if exception caught, true otherwise
    * */
   click: async function (params) {
-    // TODO: implement
-    throw 'click not implemented';
+    const { selector, value } = params[0];
+    const page = this.currentPage;
+
+    try {
+      await page.click(selector);
+      return true;
+    } catch {
+      return false;
+    }
   },
 
   /*
