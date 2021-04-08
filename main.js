@@ -69,7 +69,6 @@ const main = {
       }
     });
 
-    console.log({ results, excluded });
     return { results, excluded };
   },
 
