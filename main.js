@@ -156,8 +156,8 @@ const main = {
         return document.querySelector(selector).innerText;
       }, selector);
       return selectionValue === value;
-    } catch (error) {
-      console.error(error);
+    } catch {
+      return false;
     }
   },
 };
