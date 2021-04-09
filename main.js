@@ -128,7 +128,7 @@ const main = {
    * return false if exception caught, true otherwise
    * */
   click: async function (params) {
-    const { selector, value } = params[0];
+    const { selector } = params[0];
     const page = this.currentPage;
 
     try {
@@ -136,7 +136,7 @@ const main = {
       await page.evaluate((selector) => {
         return document.querySelector(selector).click();
       }, selector);
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
       return true;
     } catch {
       return false;
@@ -148,8 +148,17 @@ const main = {
    * return false if exception caught, true otherwise
    * */
   equal: async function (params) {
-    // TODO: implement
-    throw 'equal not implemented';
+    const page = this.currentPage;
+    const { selector, value, type } = params[0];
+
+    try {
+      const selectionValue = await page.evaluate((selector) => {
+        return document.querySelector(selector).innerText;
+      }, selector);
+      return selectionValue === value;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
