@@ -84,7 +84,7 @@ const main = {
       const page = await this.browser.newPage();
       await page.goto(url);
       this.currentPage = page;
-      return this.currentPage.url();
+      return await this.currentPage.url();
     } catch {
       return '';
     }
@@ -132,10 +132,15 @@ const main = {
     const page = this.currentPage;
 
     try {
-      await page.click(selector);
-      await page.waitForNavigation();
+      await page.waitForSelector(selector);
+      await page.evaluate((selector) => {
+        return document.querySelector(selector).click();
+      }, selector);
+      await page.waitFor(1000);
       return true;
-    } catch {
+    } catch (error) {
+      console.log(`Error with click on ${selector}`);
+      console.error(error.message);
       return false;
     }
   },
