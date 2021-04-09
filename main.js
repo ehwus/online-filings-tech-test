@@ -96,14 +96,15 @@ const main = {
    * [{ result: true/false, selector: selector-from-params }, {...}]
    * */
   exists: async function (params) {
-    return Promise.all(
-      params.map(async (param) => {
-        const selector = param.selector;
-        const result = (await this.currentPage.$(selector)) !== null;
+    const existMap = [];
 
-        return { result, selector };
-      })
-    );
+    for (const param of params) {
+      const selector = param.selector;
+      const result = (await this.currentPage.$(selector)) !== null;
+      existMap.push({ result, selector });
+    }
+
+    return existMap;
   },
 
   /*
@@ -132,7 +133,7 @@ const main = {
 
     try {
       await page.click(selector);
-      await page.waitForNavigation(100);
+      await page.waitForNavigation();
       return true;
     } catch {
       return false;
